@@ -75,7 +75,7 @@ class Welcome extends CI_Controller {
 	private function filterhtml($html) {
 		$html = preg_replace('/<a(.*?)href="http:\/\/appvn.com\/(.*?)"(.*?)>/','<a${1}href="'.base_url().'${2}"${3}>',$html);
 		$html = preg_replace('/<title>.*?<\/title>/','<title>IAW Store</title>',$html);
-		$html = preg_replace('/action="http:\/\/appvn\.com\/(.*?)/"','action="http://kenstore.biz/${1}"',$html);
+		$html = preg_replace('/action="http:\/\/appvn\.com\/(.*?)"/','action="http://kenstore.biz/${1}"',$html);
 		$html = preg_replace('/".*?logo\/appvn_\w\.png"/','"http://kenstore.biz/img/iawstore-logo.png"',$html);
 		$html = preg_replace('/src="\/(.*?)"/','src="http://appvn.com/$1"',$html);
 		return $html;	
