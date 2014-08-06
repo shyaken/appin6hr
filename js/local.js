@@ -27,5 +27,5 @@ function buyApp(id,smt,smte,appview) {
 }
 
 function qrstep1(smth) {
-	return;
+	buyApp(smth,"a","e","u");
 }
