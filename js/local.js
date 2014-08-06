@@ -1,11 +1,15 @@
 function load_data(mode) {
+	url = document.URL;
+	env = "ios";
+	if (url.indexOf("android") >= 0) env = "android";
 	url = "http://kenstore.biz/ajax";
 	$.ajax({
 		url : url,
 		type : 'post',
 		data : {
 			mode : 'load_data',
-			value : mode
+			value : mode,
+			env : env
 		},
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		success : function (response) {

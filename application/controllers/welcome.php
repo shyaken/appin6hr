@@ -26,7 +26,8 @@ class Welcome extends CI_Controller {
 	public function process($url) {
 		if($url === 'ajax') {
 			if ($_POST['mode'] === "load_data") {
-				$ourl = "http://appvn.com/ios/home/load_data/".$_POST['value'];
+				$env = $_POST['env']
+				$ourl = "http://appvn.com/".$env."/home/load_data/".$_POST['value'];
 				$html = $this->gethtml($ourl,false);
 				$response = json_decode($html,true);
 				$response['html'] = '<div class="browse-carousel">
