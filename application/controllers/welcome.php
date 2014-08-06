@@ -34,22 +34,35 @@ class Welcome extends CI_Controller {
                 <div class="carousel-pages"> 
                 <div id="country1" class="tabcontent" style="display: block;">
                     <div id="upload_time-show" style="display: block;">'.$response['html'].'</div></div></div></div></div>';
+                $response['html'] = $this->filterhtml($response['html']);
 				echo $response['html'];
 			}
+		} else if ($url === 'download') {
+			$urrl = explode('/',$_SERVER['REQUEST_URI']);
+			$id = $urrl[1];
+			
+
 		} else {
-			$url = "http://appvn.com/".$url;
+			$url = "http://appvn.com".$_SERVER['REQUEST_URI'];
 			echo $this->gethtml($url);
 		}
 	}
 
 	private function gethtml($url, $addjs = true) {
 		$html = file_get_contents($url);
-		$html = preg_replace('/<a(.*?)href="http:\/\/appvn.com\/(.*?)"(.*?)>/','<a${1}href="'.base_url().'${2}"${3}>',$html);
-		$html = preg_replace('/src="\/(.*?)"/','src="http://appvn.com/$1"',$html);
+		$html = $this->filterhtml($html);
 		if($addjs) {
 			$html = $html . "<script src='".base_url()."js/local.js'></script>";
 		}
 		return $html;
+	}
+
+	private function filterhtml($html) {
+		$html = preg_replace('/<a(.*?)href="http:\/\/appvn.com\/(.*?)"(.*?)>/','<a${1}href="'.base_url().'${2}"${3}>',$html);
+		$html = preg_replace('/<title>.*?<\/title>/','<title>IAW Store</title>',$html);
+		$html = preg_replace('/".*?logo\/appvn_\w\.png"/','"http://kenstore.biz/img/iawstore-logo.png"',$html);
+		$html = preg_replace('/src="\/(.*?)"/','src="http://appvn.com/$1"',$html);
+		return $html;	
 	}
 }
 
