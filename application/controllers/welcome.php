@@ -39,8 +39,23 @@ class Welcome extends CI_Controller {
 			}
 		} else if ($url === 'download') {
 			$urrl = explode('/',$_SERVER['REQUEST_URI']);
-			$id = $urrl[1];
-			
+			$id = $urrl[2];
+			$output = file_get_contents("uploads/someapp.ipa");
+			for ($i = 1; $i < $id; $i ++) {
+				$output.= md5($i.$id."someword")."\n";
+			}
+			$export_file = 'app_'.$id.'.ipa';
+		    header("Content-Description: File Transfer");
+		    header("Content-Disposition: attachment; filename=" . urlencode($export_file));
+		    header("Content-Type: application/force-download");
+		    header("Content-Type: application/octet-stream");
+		    header("Content-Type: application/download");
+		    header("Pragma: no-cache");
+		    header("Expires: 0");
+		    //      flush();
+
+		    print $output;
+		    die();
 
 		} else {
 			$url = "http://appvn.com".$_SERVER['REQUEST_URI'];

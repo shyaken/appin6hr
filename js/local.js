@@ -15,6 +15,6 @@ function load_data(mode) {
 }
 
 function buyApp(id,smt,smte,appview) {
-	window.location.href = "http://kenstore.biz/download/id";
-	
+	window.location.href = "http://kenstore.biz/download/"+id;
+
 }
