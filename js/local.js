@@ -25,3 +25,7 @@ function buyApp(id,smt,smte,appview) {
 	window.location.href = "http://kenstore.biz/download/"+ id + "/" + env;
 
 }
+
+function qrstep1(smth) {
+	return;
+}
