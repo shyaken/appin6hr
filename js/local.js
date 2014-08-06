@@ -15,6 +15,9 @@ function load_data(mode) {
 }
 
 function buyApp(id,smt,smte,appview) {
-	window.location.href = "http://kenstore.biz/download/"+id;
+	url = document.URL;
+	env = "ios";
+	if (url.indexOf("android") >= 0) env = "android"
+	window.location.href = "http://kenstore.biz/download/"+ id + "/" + env;
 
 }

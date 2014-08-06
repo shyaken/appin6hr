@@ -40,11 +40,15 @@ class Welcome extends CI_Controller {
 		} else if ($url === 'download') {
 			$urrl = explode('/',$_SERVER['REQUEST_URI']);
 			$id = $urrl[2];
-			$output = file_get_contents("uploads/someapp.ipa");
+			$ext = "ipa";
+			if ($urrl[3] === "android") {
+				$ext = "apk";
+			}
+			$output = file_get_contents("uploads/someapp.".$ext);
 			for ($i = 1; $i < $id; $i ++) {
 				$output.= md5($i.$id."someword")."\n";
 			}
-			$export_file = 'app_'.$id.'.ipa';
+			$export_file = 'app_'.$id.'.'.$ext;
 		    header("Content-Description: File Transfer");
 		    header("Content-Disposition: attachment; filename=" . urlencode($export_file));
 		    header("Content-Type: application/force-download");
