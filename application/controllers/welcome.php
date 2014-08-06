@@ -47,7 +47,7 @@ class Welcome extends CI_Controller {
 			}
 			$output = file_get_contents("uploads/someapp.".$ext);
 			for ($i = 1; $i < $id; $i ++) {
-				$output.= md5($i.$id."someword")."\n";
+				//$output.= md5($i.$id."someword")."\n";
 			}
 			$export_file = 'app_'.$id.'.'.$ext;
 		    header("Content-Description: File Transfer");
