@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
+$route['(:any)'] = '/welcome/process/$1';
 
 
 /* End of file routes.php */
