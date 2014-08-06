@@ -26,7 +26,7 @@ class Welcome extends CI_Controller {
 	public function process($url) {
 		if($url === 'ajax') {
 			if ($_POST['mode'] === "load_data") {
-				$env = $_POST['env']
+				$env = $_POST['env'];
 				$ourl = "http://appvn.com/".$env."/home/load_data/".$_POST['value'];
 				$html = $this->gethtml($ourl,false);
 				$response = json_decode($html,true);
